@@ -93,7 +93,7 @@
       "short_name": "Play",
       "description": "Start a new game",
       "url": "./?mode=quick",
-      "icons": [{ "src": "icons/play.png", "sizes": "96x96" }]
+      "icons": [{ "src": "icons/bubble-fish-96.png", "sizes": "96x96" }]
     }
   ],
   "widgets": [
