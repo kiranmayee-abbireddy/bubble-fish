@@ -11,7 +11,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="manifest" href="site.webmanifest">
+    <link rel="manifest" href="manifest.json">
     <meta name="msapplication-TileColor" content="#003366">
     <meta name="msapplication-TileImage" content="mstile-144x144.png">
     <link rel="mask-icon" href="safari-pinned-tab.svg" color="#003366">
@@ -1256,16 +1256,15 @@
     </div>
     <script src="game.js"></script>
     <script>
-        // Register service worker for PWA
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(registration => {
-                        console.log('ServiceWorker registration successful');
-                    })
-                    .catch(err => {
-                        console.log('ServiceWorker registration failed: ', err);
-                    });
+                navigator.serviceWorker.register('sw.js', {
+                    scope: '/'
+                }).then(registration => {
+                    console.log('ServiceWorker registration successful');
+                }).catch(err => {
+                    console.error('ServiceWorker registration failed:', err);
+                });
             });
         }
     </script>

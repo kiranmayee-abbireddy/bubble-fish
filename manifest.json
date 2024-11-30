@@ -1,39 +1,41 @@
 {
   "name": "Bubble Fish",
   "short_name": "Bubble Fish",
-  "description": "A fun underwater game where you catch fish with bubbles! Test your reflexes and aim for high scores.",
-  "id": "com.kiryee.bubblefish",
-  "start_url": "/index.html",
-  "scope": "/",
+  "description": "A fun underwater arcade game where you catch fish with bubbles. Test your reflexes, collect power-ups, and aim for high scores!",
+  "id": "bubble-fish-v1",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
-  "orientation": "landscape",
+  "display_override": ["window-controls-overlay"],
+  "orientation": "landscape-primary",
   "background_color": "#003366",
   "theme_color": "#003366",
-  "launch_handler": {
-    "client_mode": ["focus-existing", "auto"]
-  },
-  "categories": ["games", "entertainment"],
+  "categories": ["games", "entertainment", "arcade"],
   "dir": "ltr",
   "lang": "en",
+  "iarc_rating_id": "e58c174a-81d2-5c3c-32cc-34b8de4a52e9",
   "prefer_related_applications": false,
-  "related_applications": [],
-  "scope_extensions": [
-    {"origin": "*.kiryee.com"}
+  "related_applications": [
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=com.kiryee.bubblefish",
+      "id": "com.kiryee.bubblefish"
+    }
   ],
   "screenshots": [
     {
-      "src": "screenshots/gameplay.png",
+      "src": "screenshots/gameplay-1.png",
       "sizes": "1920x1080",
       "type": "image/png",
-      "form_factor": "wide",
-      "label": "Gameplay Screenshot"
+      "platform": "wide",
+      "label": "Gameplay showing fish catching"
     },
     {
-      "src": "screenshots/menu.png",
+      "src": "screenshots/menu-1.png",
       "sizes": "1920x1080",
       "type": "image/png",
-      "form_factor": "wide",
-      "label": "Main Menu"
+      "platform": "wide",
+      "label": "Main menu screen"
     }
   ],
   "icons": [
@@ -48,6 +50,74 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
+    }
+  ],
+  "launch_handler": {
+    "client_mode": ["navigate-existing", "auto"]
+  },
+  "background_sync": {
+    "periodic": true,
+    "min_interval": 24
+  },
+  "permissions": [
+    "notifications",
+    "background-sync"
+  ],
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "file_handlers": [
+    {
+      "action": "./",
+      "accept": {
+        "application/json": [".bubblefish"]
+      }
+    }
+  ],
+  "handle_links": true,
+  "protocol_handlers": [
+    {
+      "protocol": "web+bubblefish",
+      "url": "/%s"
+    }
+  ],
+  "share_target": {
+    "action": "./share",
+    "method": "GET",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
+  "shortcuts": [
+    {
+      "name": "Quick Play",
+      "short_name": "Play",
+      "description": "Start a new game",
+      "url": "./?mode=quick",
+      "icons": [{ "src": "icons/play.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "High Scores",
+      "short_name": "Scores",
+      "description": "View high scores",
+      "url": "./?page=scores",
+      "icons": [{ "src": "icons/trophy.png", "sizes": "96x96" }]
+    }
+  ],
+  "widgets": [
+    {
+      "name": "High Score Widget",
+      "tag": "highscore",
+      "description": "Shows your current high score",
+      "screenshots": [
+        {
+          "src": "widgets/highscore.png",
+          "sizes": "400x300",
+          "label": "High Score Widget"
+        }
+      ]
     }
   ]
 } 
