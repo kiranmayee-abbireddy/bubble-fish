@@ -1257,14 +1257,30 @@
     <script src="game.js"></script>
     <script>
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js', {
-                    scope: '/'
-                }).then(registration => {
-                    console.log('ServiceWorker registration successful');
-                }).catch(err => {
-                    console.error('ServiceWorker registration failed:', err);
-                });
+            window.addEventListener('load', async () => {
+                try {
+                    const registration = await navigator.serviceWorker.register('./sw.js');
+                    console.log('ServiceWorker registered:', registration);
+                    
+                    // Request notification permission
+                    if ('Notification' in window) {
+                        Notification.requestPermission();
+                    }
+                    
+                    // Register periodic sync
+                    if ('periodicSync' in registration) {
+                        try {
+                            await registration.periodicSync.register('sync-scores', {
+                                minInterval: 24 * 60 * 60 * 1000 // 24 hours
+                            });
+                        } catch (error) {
+                            console.log('Periodic sync failed:', error);
+                        }
+                    }
+                    
+                } catch (error) {
+                    console.error('ServiceWorker registration failed:', error);
+                }
             });
         }
     </script>

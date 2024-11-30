@@ -75,7 +75,7 @@
   "protocol_handlers": [
     {
       "protocol": "web+bubblefish",
-      "url": "./?fish=%s"
+      "url": "/?fish=%s"
     }
   ],
   "share_target": {
@@ -98,16 +98,14 @@
   ],
   "widgets": [
     {
-      "name": "High Score Widget",
-      "short_name": "Scores",
+      "name": "High Score",
       "description": "Shows your current high score",
       "tag": "highscore",
+      "template": "widgets/highscore.html",
       "ms_ac_template": "widgets/highscore.json",
-      "data_schema": {
-        "type": "object",
-        "properties": {
-          "score": { "type": "number" }
-        }
+      "data": {
+        "interval": 3600,
+        "source": "/api/scores"
       }
     }
   ],
@@ -137,5 +135,13 @@
     "background-sync",
     "notifications",
     "periodic-background-sync"
+  ],
+  "handle_links": {
+    "urls": [
+      { "pattern": "https://*.bubblefish.app/*" }
+    ]
+  },
+  "scope_extensions": [
+    { "origin": "https://bubblefish.app" }
   ]
 } 
