@@ -15,11 +15,30 @@
   "lang": "en",
   "iarc_rating_id": "e58c174a-81d2-5c3c-32cc-34b8de4a52e9",
   "prefer_related_applications": false,
-  "related_applications": [
+  "icons": [
     {
-      "platform": "play",
-      "url": "https://play.google.com/store/apps/details?id=com.kiryee.bubblefish",
-      "id": "com.kiryee.bubblefish"
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/maskable-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icons/maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
   "screenshots": [
@@ -29,67 +48,8 @@
       "type": "image/png",
       "platform": "wide",
       "label": "Gameplay showing fish catching"
-    },
-    {
-      "src": "screenshots/menu-1.png",
-      "sizes": "1920x1080",
-      "type": "image/png",
-      "platform": "wide",
-      "label": "Main menu screen"
     }
   ],
-  "icons": [
-    {
-      "src": "android-chrome-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "android-chrome-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
-  ],
-  "launch_handler": {
-    "client_mode": ["navigate-existing", "auto"]
-  },
-  "background_sync": {
-    "periodic": true,
-    "min_interval": 24
-  },
-  "permissions": [
-    "notifications",
-    "background-sync"
-  ],
-  "edge_side_panel": {
-    "preferred_width": 400
-  },
-  "file_handlers": [
-    {
-      "action": "./",
-      "accept": {
-        "application/json": [".bubblefish"]
-      }
-    }
-  ],
-  "handle_links": true,
-  "protocol_handlers": [
-    {
-      "protocol": "web+bubblefish",
-      "url": "/%s"
-    }
-  ],
-  "share_target": {
-    "action": "./share",
-    "method": "GET",
-    "params": {
-      "title": "title",
-      "text": "text",
-      "url": "url"
-    }
-  },
   "shortcuts": [
     {
       "name": "Quick Play",
@@ -97,27 +57,35 @@
       "description": "Start a new game",
       "url": "./?mode=quick",
       "icons": [{ "src": "icons/play.png", "sizes": "96x96" }]
-    },
-    {
-      "name": "High Scores",
-      "short_name": "Scores",
-      "description": "View high scores",
-      "url": "./?page=scores",
-      "icons": [{ "src": "icons/trophy.png", "sizes": "96x96" }]
     }
+  ],
+  "handle_links": {
+    "urls": [
+      { "pattern": "https://*.bubblefish.game/*" },
+      { "pattern": "https://bubblefish.game/*" }
+    ]
+  },
+  "scope_extensions": [
+    { "origin": "https://bubblefish.game" },
+    { "origin": "https://*.bubblefish.game" }
   ],
   "widgets": [
     {
       "name": "High Score Widget",
-      "tag": "highscore",
+      "short_name": "Scores",
       "description": "Shows your current high score",
-      "screenshots": [
-        {
-          "src": "widgets/highscore.png",
-          "sizes": "400x300",
-          "label": "High Score Widget"
-        }
-      ]
+      "tag": "highscore",
+      "ms_ac_template": "widgets/highscore.json"
     }
-  ]
+  ],
+  "background_sync": {
+    "sync_entries": [
+      {
+        "name": "scores-sync",
+        "frequency": "periodic",
+        "min_interval": 86400
+      }
+    ]
+  },
+  "permissions": ["background-sync", "notifications", "periodic-background-sync"]
 } 
