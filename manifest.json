@@ -15,27 +15,34 @@
   "lang": "en",
   "iarc_rating_id": "e58c174a-81d2-5c3c-32cc-34b8de4a52e9",
   "prefer_related_applications": false,
+  "related_applications": [
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=com.kiryee.bubblefish",
+      "id": "com.kiryee.bubblefish"
+    }
+  ],
   "icons": [
     {
-      "src": "icons/icon-192.png",
+      "src": "icons/bubble-fish-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "icons/icon-512.png",
+      "src": "icons/bubble-fish-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "icons/maskable-192.png",
+      "src": "icons/bubble-fish-maskable-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "icons/maskable-512.png",
+      "src": "icons/bubble-fish-maskable-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
@@ -50,6 +57,36 @@
       "label": "Gameplay showing fish catching"
     }
   ],
+  "launch_handler": {
+    "client_mode": ["navigate-existing", "auto"],
+    "route_to": "existing-client"
+  },
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "file_handlers": [
+    {
+      "action": "./",
+      "accept": {
+        "application/json": [".bubblefish"]
+      }
+    }
+  ],
+  "protocol_handlers": [
+    {
+      "protocol": "web+bubblefish",
+      "url": "./?fish=%s"
+    }
+  ],
+  "share_target": {
+    "action": "./share",
+    "method": "GET",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
   "shortcuts": [
     {
       "name": "Quick Play",
@@ -59,23 +96,19 @@
       "icons": [{ "src": "icons/play.png", "sizes": "96x96" }]
     }
   ],
-  "handle_links": {
-    "urls": [
-      { "pattern": "https://*.bubblefish.game/*" },
-      { "pattern": "https://bubblefish.game/*" }
-    ]
-  },
-  "scope_extensions": [
-    { "origin": "https://bubblefish.game" },
-    { "origin": "https://*.bubblefish.game" }
-  ],
   "widgets": [
     {
       "name": "High Score Widget",
       "short_name": "Scores",
       "description": "Shows your current high score",
       "tag": "highscore",
-      "ms_ac_template": "widgets/highscore.json"
+      "ms_ac_template": "widgets/highscore.json",
+      "data_schema": {
+        "type": "object",
+        "properties": {
+          "score": { "type": "number" }
+        }
+      }
     }
   ],
   "background_sync": {
@@ -87,5 +120,22 @@
       }
     ]
   },
-  "permissions": ["background-sync", "notifications", "periodic-background-sync"]
+  "periodic_sync": {
+    "score_update": {
+      "interval": 86400
+    }
+  },
+  "notifications": {
+    "actions": [
+      {
+        "action": "view",
+        "title": "View Score"
+      }
+    ]
+  },
+  "permissions": [
+    "background-sync",
+    "notifications",
+    "periodic-background-sync"
+  ]
 } 
