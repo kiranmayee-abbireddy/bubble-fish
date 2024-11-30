@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .widget-container {
+      padding: 16px;
+      background: linear-gradient(135deg, #003366, #004080);
+      border-radius: 12px;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .score {
+      font-size: 32px;
+      font-weight: bold;
+      text-align: center;
+      margin: 8px 0;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    .title {
+      font-size: 14px;
+      opacity: 0.8;
+      text-align: center;
+      margin-bottom: 4px;
+    }
+    @media (prefers-color-scheme: light) {
+      .widget-container {
+        background: linear-gradient(135deg, #4fc3f7, #2196f3);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="widget-container">
+    <div class="title">High Score</div>
+    <div class="score" id="scoreValue">0</div>
+  </div>
+  <script>
+    async function updateScore() {
+      try {
+        const response = await fetch('/api/scores');
+        const data = await response.json();
+        document.getElementById('scoreValue').textContent = data.highScore;
+      } catch (error) {
+        console.error('Failed to update score:', error);
+      }
+    }
+    
+    // Update initially and every hour
+    updateScore();
+    setInterval(updateScore, 3600000);
+  </script>
+</body>
+</html> 

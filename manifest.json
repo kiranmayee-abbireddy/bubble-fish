@@ -99,13 +99,31 @@
   "widgets": [
     {
       "name": "High Score",
+      "short_name": "Scores",
       "description": "Shows your current high score",
       "tag": "highscore",
       "template": "widgets/highscore.html",
-      "ms_ac_template": "widgets/highscore.json",
+      "screenshots": [
+        {
+          "src": "widgets/highscore-light.png",
+          "sizes": "400x300",
+          "label": "High Score Widget - Light theme",
+          "platform": "windows",
+          "form_factor": "wide"
+        },
+        {
+          "src": "widgets/highscore-dark.png",
+          "sizes": "400x300",
+          "label": "High Score Widget - Dark theme",
+          "platform": "windows",
+          "form_factor": "wide"
+        }
+      ],
+      "update_allowed": true,
+      "data_update_period": 3600,
       "data": {
-        "interval": 3600,
-        "source": "/api/scores"
+        "source": "/api/scores",
+        "defaultView": "daily"
       }
     }
   ],
@@ -138,7 +156,9 @@
   ],
   "handle_links": {
     "urls": [
-      { "pattern": "https://*.bubblefish.app/*" }
+      { "pattern": "https://*.bubblefish.app/*" },
+      { "pattern": "https://bubblefish.app/*" },
+      { "pattern": "https://*.kiryee.com/bubblefish/*" }
     ]
   },
   "scope_extensions": [
