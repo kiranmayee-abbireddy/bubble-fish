@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <path d="M256 64c106 0 192 86 192 192s-86 192-192 192S64 362 64 256 150 64 256 64z" fill="none" stroke="currentColor" stroke-width="32"/>
+  <path d="M320 256c-5-10-20-15-35-5s-15 25-10 35 20 15 35 5 15-25 10-35z" fill="currentColor"/>
+  <path d="M256 176c-40 0-72.5 32.5-72.5 72.5S216 321 256 321s72.5-32.5 72.5-72.5S296 176 256 176zm35 80c-5 10-20 15-35 5s-15-25-10-35 20-15 35-5 15 25 10 35z" fill="currentColor"/>
+</svg> 
