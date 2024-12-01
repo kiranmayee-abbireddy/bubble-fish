@@ -1,4 +1,4 @@
-# Bubble Fish Game 🐟
+# Bubble Fish Game 🐟🫧
 
 A fun web-based game where players catch fish using bubbles! Test your reflexes and aim for the highest score.
 
