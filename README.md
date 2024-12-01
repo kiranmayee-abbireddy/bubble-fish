@@ -29,7 +29,7 @@ A fun web-based game where players catch fish using bubbles! Test your reflexes 
 ## 🛠️ Installation
 
 ### Play Online
-1. Visit [game URL]
+1. Visit (https://kiranmayee-abbireddy.github.io/bubble-fish/)
 
 ### Play Offline (PWA)
 1. Visit the game URL in Chrome
